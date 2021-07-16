@@ -1,7 +1,7 @@
-import express from 'express';
-import morgan from 'morgan';
-import cors from 'cors';
-import path from 'path';
+const express = require('express');
+const morgan = require('morgan');
+const cors  = require('cors');
+const path = require('path');
 
 const app = express();
 
@@ -14,7 +14,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // Rutas
 app.get('/', (req, res) => {
-  res.send('Hello World!');
 });
 
 // Middleware para Vue.js router modo history
