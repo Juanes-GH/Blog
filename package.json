@@ -6,7 +6,8 @@
     "init": "^0.1.2",
     "mongoose": "^5.13.3",
     "mongoose-unique-validator": "^2.0.3",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "underscore": "^1.13.1"
   },
   "name": "blog",
   "description": "",
