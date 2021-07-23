@@ -11,11 +11,11 @@ app.use(morgan('tiny'));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api', require('./routes/nota'));
 app.use(express.static(path.join(__dirname, 'public')));
-
+//rutas
+app.use('/api', require('./routes/nota'));
 app.use('/api', require('./routes/user'));
-
+app.use('/login', require('./routes/login'));
 
 //Connection to the DB
 const uri = 'mongodb://localhost:27017/myapp';
