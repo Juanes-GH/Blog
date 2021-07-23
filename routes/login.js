@@ -1,5 +1,6 @@
 import express from 'express';
 const router = express.Router();
+const jwt = require('jsonwebtoken');
 
 import user from '../models/user';
 
@@ -21,9 +22,15 @@ router.post("/", async(req, res)=>{
     if(!bcrypt.compareSync(body.pass, userDb.pass)){
         return res.status(400).json({mensaje: "contraseña incorrecta"})
     }
+    // Generar Token
+    let token = jwt.sign({
+    data: userDb
+    }, 'secret', { expiresIn: 60 * 60 * 24 * 30}) // Expira en 30 días
+  
      // Pasó las validaciones
-    return res.json({userDb, token:'jsjsjs'})
-    } catch (error) {      
+    return res.json({userDb, token})
+
+} catch (error) {      
         return res.status(400).json({
         message: 'there is an err',
         error
