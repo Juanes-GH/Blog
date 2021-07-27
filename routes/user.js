@@ -2,7 +2,7 @@ import express from 'express';
 const router = express.Router();
 
 import user from '../models/user';
-const {verficationAuth}= require('../middlewares/autentificacion')
+const {verficationAuth, verifyAdministrator}= require('../middlewares/autentificacion')
 
 // Hash password
 const bcrypt = require('bcrypt');
@@ -30,9 +30,27 @@ router.post("/new-user", async(req, res)=>{
         })
     }
 })
-
+//Delete users
+router.delete('/user/:id', async(req, res)=>{
+    const _id = req.params.id;
+    try {
+        const userDb = await user.findByIdAndDelete({_id});
+        if(!userDb){
+            return res.status(400).json({
+              mensaje: 'No se encontró el id indicado',
+              error
+            })
+          }
+    
+    } catch (error) {
+        return res.status(500).json({
+            message: "Ha ocirrido un error",
+            error
+        })
+    }
+})
 //put users
-router.put('/user/:id',verficationAuth, async(req, res)=>{
+router.put('/user/:id',[verficationAuth, verifyAdministrator], async(req, res)=>{
 
     const _id = req.params.id;
     const body = _.pick(req.body, ['name', 'email', 'pass', 'activo']);

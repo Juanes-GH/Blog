@@ -12,8 +12,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+
 //rutas
-app.use('/api', require('./routes/nota'));
 app.use('/api', require('./routes/user'));
 app.use('/login', require('./routes/login'));
 
