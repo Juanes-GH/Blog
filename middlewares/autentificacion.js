@@ -7,7 +7,7 @@ const verficationAuth = (req, res, next)=>{
     let token= req.get('token');
     jwt.verify(token, 'secret', (err, decoded)=>{
         if(err){
-            return res.status(400).json({
+            return res.status(401).json({
                 mensaje: "usuario no valido",
             })
         }
@@ -23,12 +23,12 @@ const verifyAdministrator = (req, res, next) =>{
     }else{
         return res.status(401).json({mensaje:'Usuario no valido'})
     }
-    veryfyPopularOffensiveWords();
+//    veryfyPopularOffensiveWords();
 }
 
 module.exports= {verficationAuth, verifyAdministrator};
 
-const verifyPopularOffensiveWords = async()=>{
+/*const verifyPopularOffensiveWords = async()=>{
     try {
       const ofensiveWords = await ofensiveWordsRepository.getAll();
       if(!ofensiveWords.lengh === 0){
@@ -41,4 +41,4 @@ const verifyPopularOffensiveWords = async()=>{
     } catch (error) {
         console.log(error);
     }
-}
+}*/
