@@ -1,5 +1,6 @@
 //verificación del token
 import mongoose from 'mongoose';
+import nota from '../models/nota'
 const jwt = require('jsonwebtoken');
 
 const verficationAuth = (req, res, next)=>{
@@ -11,7 +12,8 @@ const verficationAuth = (req, res, next)=>{
                 mensaje: "usuario no valido",
             })
         }
-        req.user = decoded.data;
+        // Creamos una nueva propiedad con la info del usuario
+        req.user = decoded.data;//data viene al generar el token en login.js
         next();
     })
 };
@@ -23,22 +25,9 @@ const verifyAdministrator = (req, res, next) =>{
     }else{
         return res.status(401).json({mensaje:'Usuario no valido'})
     }
-//    veryfyPopularOffensiveWords();
 }
 
 module.exports= {verficationAuth, verifyAdministrator};
 
-/*const verifyPopularOffensiveWords = async()=>{
-    try {
-      const ofensiveWords = await ofensiveWordsRepository.getAll();
-      if(!ofensiveWords.lengh === 0){
-          ofensiveWordsRepository.addOfOfensiveWord({word:'caca', level:5});
-          ofensiveWordsRepository.addOfOfensiveWord({word:'pipi', level:3});
-          ofensiveWordsRepository.addOfOfensiveWord({word:'culo', level:4});
-          ofensiveWordsRepository.addOfOfensiveWord({word:'pedo', level:3});
-          console.info('Popular offensive words success');
-      }  
-    } catch (error) {
-        console.log(error);
-    }
-}*/
+
+console.log(textdescrioption, 'aaaaaa')
