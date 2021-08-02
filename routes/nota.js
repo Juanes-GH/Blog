@@ -2,12 +2,11 @@ import express from 'express';
 const router = express.Router();
 // import nota model
 import Nota from '../models/nota';
-const {verficationAuth, verifyAdministrator, verifyPopularOffensiveWords}= require('../middlewares/autentificacion')
+const {verficationAuth, verifyAdministrator}= require('../middlewares/autentificacion')
 
 //add a Note
 router.post("/nueva-nota",[verficationAuth], async(req, res)=>{
     const body = req.body;//es el cuerpo de una nota
-    body.usuarioId = req.user._id;
     try {
         const notaDB = await Nota.create(body);
     } catch (error) {

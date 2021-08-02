@@ -30,4 +30,3 @@ const verifyAdministrator = (req, res, next) =>{
 module.exports= {verficationAuth, verifyAdministrator};
 
 
-console.log(textdescrioption, 'aaaaaa')

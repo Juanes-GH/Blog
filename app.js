@@ -15,8 +15,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //rutas
 app.use('/api', require('./routes/nota'));
-//app.use('/api', require('./routes/user'));
-//app.use('/login', require('./routes/login'));
+app.use('/api', require('./routes/user'));
+app.use('/login', require('./routes/login'));
+app.use('/api', require('./routes/comments'));
 
 //Connection to the DB
 const uri = 'mongodb://localhost:27017/myapp';
